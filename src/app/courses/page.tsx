@@ -7,7 +7,12 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import { FaBook, FaGraduationCap, FaCheckCircle } from "react-icons/fa";
+import {
+  FaBook,
+  FaGraduationCap,
+  FaCheckCircle,
+  FaUserGraduate,
+} from "react-icons/fa";
 import { motion } from "framer-motion";
 import SectionHead from "@/components/SectionHead";
 import Image from "next/image";
@@ -119,6 +124,21 @@ const CourseTimeline: React.FC = () => {
 
         <VerticalTimeline lineColor="#51a2ff">
           <VerticalTimelineElement
+            icon={<FaUserGraduate />}
+            iconStyle={{ background: "#4f46e5", color: "#fff" }}
+          >
+            <h3 className="font-semibold text-lg">Get your Enrollment</h3>
+
+            <div className="border flex">
+              <Link
+                href={"/enroll"}
+                className=" text-white px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-500"
+              >
+                Enroll
+              </Link>
+            </div>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
             icon={<FaBook />}
             iconStyle={{ background: "#4f46e5", color: "#fff" }}
           >
@@ -128,10 +148,6 @@ const CourseTimeline: React.FC = () => {
                 <li key={idx}>{subject}</li>
               ))}
             </ul>
-
-            <Link href={"/enroll"} className="">
-              Enroll
-            </Link>
           </VerticalTimelineElement>
 
           <VerticalTimelineElement
