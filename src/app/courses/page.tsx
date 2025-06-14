@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React from "react";
@@ -12,6 +13,7 @@ import SectionHead from "@/components/SectionHead";
 import Image from "next/image";
 
 import nursesPhoto from "@/../public/Person/nurses.png";
+import Link from "next/link";
 
 const CourseTimeline: React.FC = () => {
   const course: Record<number, string[]> = {
@@ -126,6 +128,10 @@ const CourseTimeline: React.FC = () => {
                 <li key={idx}>{subject}</li>
               ))}
             </ul>
+
+            <Link href={"/enroll"} className="">
+              Enroll
+            </Link>
           </VerticalTimelineElement>
 
           <VerticalTimelineElement

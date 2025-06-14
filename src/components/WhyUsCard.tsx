@@ -14,7 +14,7 @@ const WhyUsCard: React.FC<WhyUsCardProps> = ({ image, text }) => {
         <div className="rounded-full p-1 bg-blue-400">
           <div className="bg-white rounded-full p-2">
             {typeof image === "string" ? (
-              <img
+              <Image
                 src={image}
                 alt="icon here"
                 className="w-12 h-12 object-contain rounded-full"

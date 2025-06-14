@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import { Input, Radio, DatePicker, Button } from "antd";
+import { Input, Radio, DatePicker, Button, RadioChangeEvent } from "antd";
 import dayjs, { Dayjs } from "dayjs";
 import { sendBookingEnquiry } from "@/actions/bookDemo";
 import toast from "react-hot-toast";
@@ -45,6 +45,13 @@ const CourseEnrollForm: React.FC = () => {
         [field]: value,
       }));
     };
+
+  const handleChangeSubject = (e: RadioChangeEvent) => {
+    setFormData((prev) => ({
+      ...prev,
+      course: e.target.value,
+    }));
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -93,7 +100,7 @@ const CourseEnrollForm: React.FC = () => {
         <label className="text-sm">Course</label>
         <Radio.Group
           value={formData.course}
-          onChange={(e) => handleChange("course")}
+          onChange={(e) => handleChangeSubject(e)}
           className="flex gap-4"
         >
           <Radio value="GNM">GNM</Radio>
