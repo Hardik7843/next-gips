@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-'use client';
+"use client";
 
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { Input, Radio, DatePicker, Button } from 'antd';
-import dayjs, { Dayjs } from 'dayjs';
-import { sendBookingEnquiry } from '@/actions/bookDemo';
+import React, { useState, ChangeEvent, FormEvent } from "react";
+import { Input, Radio, DatePicker, Button } from "antd";
+import dayjs, { Dayjs } from "dayjs";
+import { sendBookingEnquiry } from "@/actions/bookDemo";
+import toast from "react-hot-toast";
 
-type Course = 'GNM' | 'Paramedical';
+type Course = "GNM" | "Paramedical";
 
 interface FormData {
   name: string;
@@ -20,55 +21,55 @@ interface FormData {
 
 const CourseEnrollForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    phone: '',
-    email: '',
-    course: 'GNM',
-    dob: '',
-    tenthPercent: '',
-    twelfthPercent: '',
+    name: "",
+    phone: "",
+    email: "",
+    course: "GNM",
+    dob: "",
+    tenthPercent: "",
+    twelfthPercent: "",
   });
 
   const handleChange =
     (field: keyof FormData) =>
-      (
-        e: ChangeEvent<HTMLInputElement> | string | Dayjs | null
-      ): void => {
-        const value =
-          typeof e === 'string'
-            ? e
-            : dayjs.isDayjs(e)
-              ? e.format('DD-MMM-YYYY')
-              : (e?.target as HTMLInputElement)?.value;
+    (e: ChangeEvent<HTMLInputElement> | string | Dayjs | null): void => {
+      const value =
+        typeof e === "string"
+          ? e
+          : dayjs.isDayjs(e)
+          ? e.format("DD-MMM-YYYY")
+          : (e?.target as HTMLInputElement)?.value;
 
-        setFormData((prev) => ({
-          ...prev,
-          [field]: value,
-        }));
-      };
+      setFormData((prev) => ({
+        ...prev,
+        [field]: value,
+      }));
+    };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
+    toast.loading("Sending...", { id: "send" });
     try {
+      toast.dismiss("send");
       const result = await sendBookingEnquiry(formData);
-      console.log('✅ Submitted:', result);
-      alert('Enquiry sent successfully!');
+      console.log("✅ Submitted:", result);
+      toast.success("Enquiry sent successfully!");
       // alert('Enrollment submitted!');
     } catch (err) {
-      console.error('❌', err);
-      alert('Failed to submit');
+      console.error("❌", err);
+      toast.dismiss("send");
+      toast.error("Failed to submit");
     }
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 mt-15 lg:mt-25 bg-white">
+    <div className="max-w-xl mx-auto p-6 mt-15 lg:mt-25">
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <label className="text-sm">Full Name</label>
         <Input
           required
           value={formData.name}
-          onChange={handleChange('name')}
+          onChange={handleChange("name")}
           className="rounded-md"
         />
 
@@ -76,7 +77,7 @@ const CourseEnrollForm: React.FC = () => {
         <Input
           required
           value={formData.phone}
-          onChange={handleChange('phone')}
+          onChange={handleChange("phone")}
           className="rounded-md"
         />
 
@@ -84,7 +85,7 @@ const CourseEnrollForm: React.FC = () => {
         <Input
           required
           value={formData.email}
-          onChange={handleChange('email')}
+          onChange={handleChange("email")}
           className="rounded-md"
           type="email"
         />
@@ -92,7 +93,7 @@ const CourseEnrollForm: React.FC = () => {
         <label className="text-sm">Course</label>
         <Radio.Group
           value={formData.course}
-          onChange={e => handleChange('course')}
+          onChange={(e) => handleChange("course")}
           className="flex gap-4"
         >
           <Radio value="GNM">GNM</Radio>
@@ -103,11 +104,9 @@ const CourseEnrollForm: React.FC = () => {
         <DatePicker
           required
           format="DD-MMM-YYYY"
-          disabledDate={(current) => current && current > dayjs().endOf('day')}
-          value={
-            formData.dob ? dayjs(formData.dob, 'DD-MMM-YYYY') : null
-          }
-          onChange={handleChange('dob')}
+          disabledDate={(current) => current && current > dayjs().endOf("day")}
+          value={formData.dob ? dayjs(formData.dob, "DD-MMM-YYYY") : null}
+          onChange={handleChange("dob")}
           className="w-full"
         />
 
@@ -115,7 +114,7 @@ const CourseEnrollForm: React.FC = () => {
         <Input
           required
           value={formData.tenthPercent}
-          onChange={handleChange('tenthPercent')}
+          onChange={handleChange("tenthPercent")}
           className="rounded-md"
         />
 
@@ -123,7 +122,7 @@ const CourseEnrollForm: React.FC = () => {
         <Input
           required
           value={formData.twelfthPercent}
-          onChange={handleChange('twelfthPercent')}
+          onChange={handleChange("twelfthPercent")}
           className="rounded-md"
         />
 

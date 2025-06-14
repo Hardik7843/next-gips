@@ -1,19 +1,16 @@
-import React, { ReactNode } from 'react';
+import React from "react";
 
-type SectionHeadProps = {
-    children: ReactNode
+interface SectionHeadProps {
+  title: string;
 }
-const SectionHead = ({ children }: SectionHeadProps) =>
-{
-    return (
-        <div>
-            <h2 className='relative text-3xl font-bold my-6 text-center'>
-                <span className='text-transparent md:text-4xl lg:text-5xl xl:text-7xl bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 '>
-                    {children}
-                </span>
-            </h2>
-        </div>
-    );
+
+const SectionHead: React.FC<SectionHeadProps> = ({ title }) => {
+  return (
+    <div className="flex justify-start mb-3 bg-gray-200">
+      <div className="border-4 border-blue-500" />
+      <p className="w-fit p-1.5">{title}</p>
+    </div>
+  );
 };
 
 export default SectionHead;

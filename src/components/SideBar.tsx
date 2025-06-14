@@ -1,7 +1,12 @@
-import { navlinks } from "@/config/navConfig";
+import React from "react";
 import NavLink from "./NavLink";
+import { navlinks } from "@/config/navConfig";
 
-const SideBar = ({ handleClose }: { handleClose: () => void }) => {
+type SideBarProps = {
+  handleClose: () => void;
+};
+
+const SideBar: React.FC<SideBarProps> = ({ handleClose }) => {
   return (
     <ul className="flex flex-col py-4 items-center h-screen">
       {navlinks.map((nav, index) => (

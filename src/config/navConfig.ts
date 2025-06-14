@@ -1,31 +1,14 @@
 export const navlinks = [
-    {
-        name: "About",
-        path: "/#",
-    },
-    {
-        name: "Pricing",
-        path: "/#pricing",
-    },
-
-
-
-
-
-    {
-        name: "Services",
-        path: "/#services"
-    },
-    {
-        name: "Contact",
-        path: "/#contact",
-    },
-    {
-        name: "Career",
-        path: '/career'
-    },
-    {
-        name: "Become Partner",
-        path: '/partner'
-    }
+  {
+    name: "About G.E.I.P.S",
+    path: "/about",
+  },
+  {
+    name: "Our Courses",
+    path: "/courses",
+  },
+  {
+    name: "Career",
+    path: "/#",
+  },
 ];

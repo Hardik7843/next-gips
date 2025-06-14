@@ -1,20 +1,21 @@
-'use client';
+import React from "react";
 
-import Link from "next/link";
+type NavLinkProps = {
+  name: string;
+  path: string;
+};
 
-
-const NavLink = ({ name, path }: { name: string, path: string }) =>
-{
-    return (
-        <li>
-            <Link
-                href={path}
-                className='block py-2 pl-3 pr-4 text-[#ADB7BE] sm:text-xl rounded md:p-0 hover:text-white'
-            >
-                {name}
-            </Link>
-        </li>
-    );
+const NavLink: React.FC<NavLinkProps> = ({ name, path }) => {
+  return (
+    <li>
+      <a
+        href={path}
+        className="block font-normal py-2 pl-3 pr-4 text-gray-600 sm:text-xl rounded md:p-0 hover:text-black"
+      >
+        {name}
+      </a>
+    </li>
+  );
 };
 
 export default NavLink;
